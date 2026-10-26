@@ -1,0 +1,100 @@
+name: test microsservice
+
+on: 
+  push:   
+    branches: [aula-01]
+  pull-request:
+    branches: [aula-01]
+
+jobs:
+  test-auth-service:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.14.7'
+
+      - name: Install dependencies
+        working-directory: ./burguer-app/auth-service
+        run: |
+          pip install -r requirements.txt
+          
+
+      - name: Run tests
+        working-directory: ./burger-app/auth-service
+        run: |
+          pytest -v --cov=models --cov=services --cov=config --cov=controllers
+          radon cc ./models/auth_model.py
+
+  test-product-service:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.14.7'
+
+      - name: Install dependencies
+        working-directory: ./burguer-app/product-service
+        run: |
+          pip install -r requirements.txt
+          
+
+      - name: Run tests
+        working-directory: ./burger-app/product-service
+        run: |
+          pytest -v --cov=models --cov=services --cov=config --cov=controllers
+          radon cc ./models/product_model.py
+
+  test-order-service:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.14.7'
+
+      - name: Install dependencies
+        working-directory: ./burguer-app/order-service
+        run: |
+          pip install -r requirements.txt
+          
+
+      - name: Run tests
+        working-directory: ./burger-app/order-service
+        run: |
+          pytest -v --cov=models --cov=services --cov=config --cov=controllers
+          radon cc ./models/order_model.py
+
+  test-user-service:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.14.7'
+
+      - name: Install dependencies
+        working-directory: ./burguer-app/user-service
+        run: |
+          pip install -r requirements.txt
+          
+
+      - name: Run tests
+        working-directory: ./burger-app/user-service
+        run: |
+          pytest -v --cov=models --cov=services --cov=config --cov=controllers
+          radon cc ./models/user_model.py
