@@ -17,12 +17,12 @@ jobs:
           python-version: "3.14"
 
       - name: Install dependencies
-        working-directory: ./alura-python-testes/burguer-app/auth-service
+        working-directory: ./burguer-app/auth-service
         run: |
           pip install -r requirements.txt
 
       - name: Run tests
-        working-directory: ./alura-python-testes/burguer-app/auth-service
+        working-directory: ./burguer-app/auth-service
         run: |
           pytest -v --cov=models --cov=services --cov=config --cov=controllers
           radon cc ./models/auth_model.py
@@ -39,12 +39,12 @@ jobs:
           python-version: "3.14"
 
       - name: Install dependencies
-        working-directory: ./alura-python-testes/burguer-app/product-service
+        working-directory: ./burguer-app/product-service
         run: |
           pip install -r requirements.txt
 
       - name: Run tests
-        working-directory: ./alura-python-testes/burguer-app/product-service
+        working-directory: ./burguer-app/product-service
         run: |
           pytest -v --cov=models --cov=services --cov=config --cov=controllers
           radon cc ./models/product_model.py
@@ -61,12 +61,12 @@ jobs:
           python-version: "3.14"
 
       - name: Install dependencies
-        working-directory: ./alura-python-testes/burguer-app/order-service
+        working-directory: ./burguer-app/order-service
         run: |
           pip install -r requirements.txt
 
       - name: Run tests
-        working-directory: ./alura-python-testes/burguer-app/order-service
+        working-directory: ./burguer-app/order-service
         run: |
           pytest -v --cov=models --cov=services --cov=config --cov=controllers
           radon cc ./models/order_model.py
@@ -83,12 +83,12 @@ jobs:
           python-version: "3.14"
 
       - name: Install dependencies
-        working-directory: ./alura-python-testes/burguer-app/user-service
+        working-directory: ./burguer-app/user-service
         run: |
           pip install -r requirements.txt
 
       - name: Run tests
-        working-directory: ./alura-python-testes/burguer-app/user-service
+        working-directory: ./burguer-app/user-service
         run: |
           pytest -v --cov=models --cov=services --cov=config --cov=controllers
           radon cc ./models/user_model.py
