@@ -1,10 +1,8 @@
 name: test microsservice
 
-on: 
-  push:   
-    branches: [aula-01]
-  pull-request:
-    branches: [aula-01]
+on:
+  push:
+    branches: [main]
 
 jobs:
   test-auth-service:
@@ -16,13 +14,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.14.7'
+          python-version: "3.14.7"
 
       - name: Install dependencies
         working-directory: ./burguer-app/auth-service
         run: |
           pip install -r requirements.txt
-          
 
       - name: Run tests
         working-directory: ./burger-app/auth-service
@@ -39,13 +36,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.14.7'
+          python-version: "3.14.7"
 
       - name: Install dependencies
         working-directory: ./burguer-app/product-service
         run: |
           pip install -r requirements.txt
-          
 
       - name: Run tests
         working-directory: ./burger-app/product-service
@@ -62,13 +58,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.14.7'
+          python-version: "3.14.7"
 
       - name: Install dependencies
         working-directory: ./burguer-app/order-service
         run: |
           pip install -r requirements.txt
-          
 
       - name: Run tests
         working-directory: ./burger-app/order-service
@@ -85,13 +80,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.14.7'
+          python-version: "3.14.7"
 
       - name: Install dependencies
         working-directory: ./burguer-app/user-service
         run: |
           pip install -r requirements.txt
-          
 
       - name: Run tests
         working-directory: ./burger-app/user-service
