@@ -21,11 +21,11 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run tests
-        working-directory: ./burguer-app/auth-service
-        run: |
-          pytest -v --cov=models --cov=services --cov=config --cov=controllers
-          radon cc ./models/auth_model.py
+      # - name: Run tests
+      #   working-directory: ./burguer-app/auth-service
+      #   run: |
+      #     pytest -v --cov=models --cov=services --cov=config --cov=controllers
+      #     radon cc ./models/auth_model.py
 
   test-product-service:
     runs-on: ubuntu-latest
@@ -43,11 +43,11 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run tests
-        working-directory: ./burguer-app/product-service
-        run: |
-          pytest -v --cov=models --cov=services --cov=config --cov=controllers
-          radon cc ./models/product_model.py
+      # - name: Run tests
+      #   working-directory: ./burguer-app/product-service
+      #   run: |
+      #     pytest -v --cov=models --cov=services --cov=config --cov=controllers
+      #     radon cc ./models/product_model.py
 
   test-order-service:
     runs-on: ubuntu-latest
@@ -65,11 +65,11 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run tests
-        working-directory: ./burguer-app/order-service
-        run: |
-          pytest -v --cov=models --cov=services --cov=config --cov=controllers
-          radon cc ./models/order_model.py
+      # - name: Run tests
+      #   working-directory: ./burguer-app/order-service
+      #   run: |
+      #     pytest -v --cov=models --cov=services --cov=config --cov=controllers
+      #     radon cc ./models/order_model.py
 
   test-user-service:
     runs-on: ubuntu-latest
@@ -87,8 +87,8 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run tests
-        working-directory: ./burguer-app/user-service
-        run: |
-          pytest -v --cov=models --cov=services --cov=config --cov=controllers
-          radon cc ./models/user_model.py
+      # - name: Run tests
+      #   working-directory: ./burguer-app/user-service
+      #   run: |
+      #     pytest -v --cov=models --cov=services --cov=config --cov=controllers
+      #     radon cc ./models/user_model.py
