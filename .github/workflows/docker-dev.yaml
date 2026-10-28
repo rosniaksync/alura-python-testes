@@ -2,44 +2,43 @@ name: Docker dev workflow
 
 on:
   push:
-    branchers: 
+    branches:
       - main
-  pull-requests:
+  pull_requests:
     branches:
       - main
 
 jobs:
   docker-up:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Docker buildx
-      uses: docker/setup-buildx-actions@v2
+      - name: Set up Docker buildx
+        uses: docker/setup-buildx-action@v2
 
-    - name: Install Docker Compose
-      run: |
-        curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        chmod +x /usr/local/bin/docker-compose
-        docker-compose --version
+      - name: Install Docker Compose
+        run: |
+          curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          chmod +x /usr/local/bin/docker-compose
+          docker-compose --version
 
-    - name: Create .env to all services
-      run: |
-        echo "MONGO_URI=${{ secrets.MONGO_URI }}" > user-service/.env
-        echo "MONGO_URI=${{ secrets.MONGO_URI }}" > auth-service/.env
-        echo "MONGO_URI=${{ secrets.MONGO_URI }}" > order-service/.env
-        echo "MONGO_URI=${{ secrets.MONGO_URI }}" > product-service/.env]
+      - name: Create .env to all services
+        run: |
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" > user-service/.env
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" > auth-service/.env
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" > order-service/.env
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" > product-service/.env
 
-    - name: Build and run Docker containers
-      run: |
-        docker-compose -f docker-compose.yaml -f docker-compose-override.yaml down
-        docker-compose -f docker-compose.yaml -f docker-compose-override.yaml up -d --build
+      - name: Build and run Docker containers
+        run: |
+          docker-compose -f docker-compose.yaml -f docker-compose.override.yaml down
+          docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build
 
-    - name: Waiting for Mongo to be ready
-      run: sleep 20
+      - name: Waiting for Mongo to be ready
+        run: sleep 20
 
-    - name: Shut down Docker containers
-      working-directory: burguer-app
-      run: docker-compose down 
+      - name: Shut down Docker containers
+        run: docker-compose down
