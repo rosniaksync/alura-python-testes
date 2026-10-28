@@ -1,10 +1,9 @@
 services:
-
-  mongo: 
+  mongo:
     build: ./mongo
     container_name: mongo
     restart: always
-    ports: 
+    ports:
       - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -14,18 +13,21 @@ services:
     networks:
       - microsservices-net
 
-    auth-service:
-      environment:
-        MONGO_URI: ${MONGO_URI}
+  auth-service:
+    environment:
+      MONGO_URI: ${MONGO_URI}
 
-    user-service:
-      environment:
-        MONGO_URI: ${MONGO_URI}
+  user-service:
+    environment:
+      MONGO_URI: ${MONGO_URI}
 
-    order-service:
-      environment:
-        MONGO_URI: ${MONGO_URI}
+  order-service:
+    environment:
+      MONGO_URI: ${MONGO_URI}
 
-    product-service:
-      environment:
-        MONGO_URI: ${MONGO_URI}
+  product-service:
+    environment:
+      MONGO_URI: ${MONGO_URI}
+
+volumes:
+  mongo-data:
